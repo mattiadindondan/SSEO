@@ -84,6 +84,9 @@ V3 = norm(vl6'-v3);
 
 Time = [D.mjd2000,TOF1,TOF2];
 
-dVtot(:,i) = [V1 V2 V3 Vfb];
+dVtot(:,i) = [ V2 V3 Vfb];
 end
+%%
 
+[d,e] = min(sum(dVtot))
+dVtot(:,e)
