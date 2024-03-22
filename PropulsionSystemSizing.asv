@@ -19,7 +19,7 @@ P_chamber=21; % [bar] Pressure of Combustion Chamber
 v_feed=10; % [m/s] check the value of feed velocity
 margin_deltaV= 1.1; % margin of deltaV
 T_tank=300; %[K] the range for bi-propellant 290-300k Tank Temperature
-m_engine=4.5; % [kg] engine mass
+m_thruster=4.5; % [kg] thruster mass
 
 
 deltaV_marg=margin_deltaV*deltaV; % deltaV with margin
@@ -68,5 +68,5 @@ m_tank_fuel=rho_tank*4/3*pi*((r_tank_fuel+t_tank_fuel)^3-r_tank_fuel^3); % [kg] 
 m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [kg] pressurize gas tank mass
 
 
-M_propsyst=(1.1*m_tank_fuel)+(1.1*m_tank_ox)+(1.1*m_tank_press)+m_press_real+(1.1*m_engine); % [kg] total mass of primary propulsion system + margin
+M_propsyst=(1.1*m_tank_fuel)+(1.1*m_tank_ox)+(1.1*m_tank_press)+m_press_real+(1.1*m_thruster); % [kg] total mass of primary propulsion system + margin
 
