@@ -47,8 +47,8 @@ V_prop_marg=V_prop+(V_prop*0.1); % [m^3] Propellant Volume + margin
 
 deltaP_inj=0.3*P_chamber; % [bar] deltaP Injection
 deltaP_feed=(1/2*rho_MON*v_feed^2)*1.01325; % [bar] (converted from atm) deltaP feed
-P_tank=(P_chamber+deltaP_feed+deltaP_inj)*10^5; % [Pa] (converted from bar) Tank Pressure
-P_press_i=10*P_tank; % [Pa] Pressurize Gas Pressure check the 10 times
+P_tank=P_chamber+deltaP_feed+deltaP_inj; % [bar] Tank Pressure
+P_press_i=10*P_tank*10^6; % [MPa] Pressurize Gas Pressure check the 10 times
 
 m_press=((P_tank*V_prop_marg)/(R*T_tank))*(y/(1-(P_tank/P_press_i))); % [kg] pressurize gas mass 
 m_press_real=1.2*m_press; % [kg] pressurize gas mass + margin
