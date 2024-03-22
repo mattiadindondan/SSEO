@@ -54,7 +54,7 @@ m_press=((P_tank*V_prop_marg)/(R*T_tank))*(y/(1-(P_tank/P_press_i))); % [kg] pre
 m_press_real=1.2*m_press; % [kg] pressurize gas mass + margin
 V_press=m_press_real*R*T_tank/P_press_i; % [m^3] press Volume
 
-%%% COMPUTE THA TANK MASS %%%%%
+%%% COMPUTE THA TANK MASSES %%%%%
 r_tank_ox=(3/4*V_ox_marg/pi)^(1/3);  % [m] radius of spherycal tank of oxidier
 r_tank_fuel=(3/4*V_fuel_marg/pi)^(1/3); % [m] radius of spherycal tank of fuel
 r_tank_press=(3/4*V_press/pi)^(1/3); % [m] radius of spherycal tank of pressurize gas
