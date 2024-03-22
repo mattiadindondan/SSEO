@@ -15,6 +15,7 @@ rho_MON=1433;  % [kg/m^3]  Oxidier density
 rho_tank= 2810; % [kg/m^3] for Allumium (Al7075) or 2780 for Titanium (Ti6A14V)
 sigma=503; % [MPa] for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
 %rho_He=0.1784; % [kg/m^3] He density
+P_chamber=21; % [bar] Pressure of Combustion Chamber
 v_feed=10; % [m/s] check the value of feed velocity
 margin_deltaV= 1.1; % margin of deltaV
 T_tank=290; %[K] the range for bi-propellant 290-300k Tank Temperature
@@ -43,7 +44,7 @@ V_ox_marg=V_ox+(0.1*V_ox); % [m^3] Oxidier Volume + margin
 V_prop= V_ox_marg+V_fuel_marg; % [m^3] Propellant Volume
 V_prop_marg=V_prop+(V_prop*0.1); % [m^3] Propellant Volume + margin
 
-P_chamber=NaN; % [bar] Pressure of Combustion Chamber
+
 deltaP_inj=0.3*P_chamber; % [bar] deltaP Injection
 deltaP_feed=1/2*rho_MON*v_feed^2; % [atm] deltaP feed
 P_tank=P_chamber+deltaP_feed+deltaP_inj; % [bar] Tank Pressure
