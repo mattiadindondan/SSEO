@@ -55,7 +55,7 @@ if(DEP+TOF1+TOF2 < LArr)
             [r3, v3] = kep2car(kep3, muS); % position and velocity
 
             TOF1_sec = TOF1*3600*24;
-            [~,~,~,err,VI1,VF1,~,~] = lambertMR(r1, r2, TOF1_sec, muS,orbitType,0,0,0); % Note: time in [s], V is [1x3]
+            [~,~,~,err,VI1,VF1,~,~] = lambertMR(r1, r2, TOF1_sec, muS,orbitType,1,1,0); % Note: time in [s], V is [1x3]
            if err ==0
              
                 TOF2_sec = (TOF2)*3600*24;
