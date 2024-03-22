@@ -1,0 +1,55 @@
+function HyperbolaPlot(rp,vp_m,vp_p,ID,mu)
+% 
+% PROTOTYPE:  HyperbolaPlot(rp,vp_m,vp_p,ID)
+%
+% Plot of the hyperbolic powered flyby trajectory around the flyby planet (Earth in this case) 
+% in Perifocal frame (radial, transversal, out of plane)
+%
+% 
+% INPUT
+%
+% rp                        [1x1]          pericenter radius                [km]
+% vp_m                      [1x1]          velocity at the pericenter       [km/s]
+%                                          before the deltaV                   
+% vp_p                      [1x1]          velocity at the pericenter       [km/s]
+%                                          after the deltaV
+% CONTRIBUTORS
+%
+% Monai Francesco
+% Dora Campana
+% Arda Varlı
+% Marco Barbieri
+% Versions: 2023-10-01 First version
+
+
+% Plot the flyby Hyperbola in Peripfocal frame
+
+rp_v     =   rp*[1 0 0]';
+vp_m_v   = vp_m*[0 1 0]';
+vp_p_v   = vp_p*[0 1 0]';
+[r1, ~]  = ode_orbit1(rp_v, vp_m_v, mu,0:1:2000);
+[r2, ~]  = ode_orbit1(rp_v, vp_p_v, mu,0:-1:-2000);
+
+figure()
+
+hold on
+plot3(r1(:,1),r1(:,2),r1(:,3),'color','r')
+plot3(r2(:,1),r2(:,2),r2(:,3),'color','b')
+mArrow3([0 0 0],[1e+5 0 0],'color','k','stemWidth',200,'tipWidth',600);
+mArrow3([0 0 0],[0 1e+5 0],'color','k','stemWidth',200,'tipWidth',600);
+if(ID==3)
+options.Units = 'km';
+planet3D('Earth',options);
+hold on
+end
+
+
+grid on
+axis([-1e+5 1e+5 -1e+5 1e+5 -1e+5 1e+5])
+% axis equal
+legend('Incoming hyperbola','Outgoing hyperbola','Perifocal frame');
+title('Fly-by -Perifocal frame-');
+xlabel('x [km]');
+ylabel('y [km]');
+zlabel('z [km]');
+end
