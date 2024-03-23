@@ -1,9 +1,9 @@
 close all,clear all,clc;
 %REVERSE SIZING OF PROPULSION SYSTEM
 
-%%%%%% BIPROPELLANT REVERSE SYZING %%%%%%%%%
+%%%%%% BIPROPELLANT REVERSE SIZING %%%%%%%%%
 
-deltaV=4300;  % [m/s] deltaV cost
+deltaV=2100;  % [m/s] deltaV cost
 I_sp= 317; % [s] Specific Impulse
 m_dry= 1593; % [kg] Dry Mass
 OF_ratio= 0.85;  % O/F ratio
@@ -30,7 +30,7 @@ m_fin= 1.2*m_dry;   % [kg] check 1.2 if it is the margin
 
 m_0=MR*m_fin;   % [kg] Oxidier Mass
 
-m_prop=m_0-m_fin;   % [kg] Propellant Mass
+m_prop=(m_0-m_fin);   % [kg] Propellant Mass
 m_prop_real=m_prop*1.055;  % [kg] check the margin
 
 m_fuel=m_prop_real/(1+OF_ratio);  % [Kg] Fuel Mass computed with real propellant mass
@@ -69,4 +69,44 @@ m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [
 
 
 M_propsyst=(1.1*m_tank_fuel)+(1.1*m_tank_ox)+(1.1*m_tank_press)+m_press_real+(1.1*m_engine); % [kg] total mass of primary propulsion system + margin
+
+%%%%%%% Volume Sizing %%%%%%%
+n=[1:6];
+vfuel=V_fuel_marg./n;
+vox=V_ox_marg./n;
+
+ vfuel = 2*vox %assumption
+rox=(3/4*vox/pi).^(1/3);
+rfuel=(3/4*vfuel/pi).^(1/3);
+figure()
+plot(n,rox)
+hold on
+plot(n,rfuel)
+grid on
+
+%r_tank_ox=(3/4*V_ox_marg/pi)^(1/3);  % [m] radius of spherycal tank of oxidier
+%r_tank_fuel=(3/4*V_fuel_marg/pi)^(1/3); % [m] radius of spherycal tank of fuel
+%r_tank_press=(3/4*V_press/pi)^(1/3); % [m] radius of spherycal tank of pressurize gas
+tox=P_tank*rox/(2*sigma);  % [m] thickness of oxidier tank
+tfuel=P_tank*rfuel/(2*sigma); % [m] thickness of fuel tank
+%t_tank_press=P_tank*r_tank_press/(2*sigma); % [m] thickness of pressurize gas tank
+
+% compute mass of propulsion system
+mtankox=rho_tank*4/3*pi*((rox+tox).^3-rox.^3);  % [kg] oxidier tank mass
+mtankfuel=rho_tank*4/3*pi*((rfuel+tfuel).^3-rfuel.^3); % [kg] fuel tank mass
+%m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [kg] pressurize gas tank mass
+
+ tfuel
+ n.*mtankfuel
+mox=vox*rho_MON.*n;
+mfuel=vfuel*rho_hydrazine;
+
+figure()
+
+plot(n,tox);
+grid on
+
+
+
+
 

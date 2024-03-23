@@ -9,7 +9,7 @@ function [r1v,v1,r2v,v2] = LambertArcs(DEP,TOF1,TOF2,muS,n1,n2,n3,orbitType,tvec
 [Kep3,~] = uplanet(DEP+TOF1+TOF2,n3);
 [r3,~] = kep2car(Kep3,muS);
 
-[~,~,~,~,v1,~,~,~] = lambertMR(r1,r2,TOF1*24*3600,muS,orbitType,1,1,0);
+[~,~,~,~,v1,~,~,~] = lambertMR(r1,r2,TOF1*24*3600,muS,orbitType,0,0,0);
 [~,~,~,~,v2,~,~,~] = lambertMR(r2,r3,TOF2*24*3600,muS,orbitType,0,0,0);
 
 
