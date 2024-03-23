@@ -3,7 +3,7 @@ close all,clear all,clc;
 
 %%%%%% BIPROPELLANT REVERSE SIZING %%%%%%%%%
 
-deltaV=2100;  % [m/s] deltaV cost
+deltaV=1633+264;  % [m/s] deltaV cost
 I_sp= 317; % [s] Specific Impulse
 m_dry= 1593; % [kg] Dry Mass
 OF_ratio= 0.85;  % O/F ratio
@@ -68,7 +68,7 @@ m_tank_fuel=rho_tank*4/3*pi*((r_tank_fuel+t_tank_fuel)^3-r_tank_fuel^3); % [kg] 
 m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [kg] pressurize gas tank mass
 
 
-M_propsyst=(1.1*m_tank_fuel)+(1.1*m_tank_ox)+(1.1*m_tank_press)+m_press_real+(1.1*m_engine); % [kg] total mass of primary propulsion system + margin
+M_propsyst=1.1*(m_tank_fuel+m_tank_ox+m_tank_press+m_press_real+m_engine); % [kg] total mass of primary propulsion system + margin
 
 %%%%%%% Volume Sizing %%%%%%%
 n=[1:6];
