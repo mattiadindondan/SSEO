@@ -62,7 +62,8 @@ t_tank_ox=P_tank*r_tank_ox/(2*sigma);  % [m] thickness of oxidier tank
 t_tank_fuel=P_tank*r_tank_fuel/(2*sigma); % [m] thickness of fuel tank
 t_tank_press=P_tank*r_tank_press/(2*sigma); % [m] thickness of pressurize gas tank
 
-% compute mass of propulsion system
+% compute mass of propulsion system considering 1 tank for each type of
+% element
 m_tank_ox=rho_tank*4/3*pi*((r_tank_ox+t_tank_ox)^3-r_tank_ox^3);  % [kg] oxidier tank mass
 m_tank_fuel=rho_tank*4/3*pi*((r_tank_fuel+t_tank_fuel)^3-r_tank_fuel^3); % [kg] fuel tank mass
 m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [kg] pressurize gas tank mass
@@ -71,40 +72,40 @@ m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [
 M_propsyst=1.1*(m_tank_fuel+m_tank_ox+m_tank_press+m_press_real+m_engine); % [kg] total mass of primary propulsion system + margin
 
 %%%%%%% Volume Sizing %%%%%%%
-n=[1:6];
-vfuel=V_fuel_marg./n;
-vox=V_ox_marg./n;
+%n=[1:6];
+%vfuel=V_fuel_marg./n;
+%vox=V_ox_marg./n;
 
- vfuel = 2*vox %assumption
-rox=(3/4*vox/pi).^(1/3);
-rfuel=(3/4*vfuel/pi).^(1/3);
-figure()
-plot(n,rox)
-hold on
-plot(n,rfuel)
-grid on
+% vfuel = 2*vox %assumption
+%rox=(3/4*vox/pi).^(1/3);
+%rfuel=(3/4*vfuel/pi).^(1/3);
+%figure()
+%plot(n,rox)
+%hold on
+%plot(n,rfuel)
+%grid on
 
 %r_tank_ox=(3/4*V_ox_marg/pi)^(1/3);  % [m] radius of spherycal tank of oxidier
 %r_tank_fuel=(3/4*V_fuel_marg/pi)^(1/3); % [m] radius of spherycal tank of fuel
 %r_tank_press=(3/4*V_press/pi)^(1/3); % [m] radius of spherycal tank of pressurize gas
-tox=P_tank*rox/(2*sigma);  % [m] thickness of oxidier tank
-tfuel=P_tank*rfuel/(2*sigma); % [m] thickness of fuel tank
+%tox=P_tank*rox/(2*sigma);  % [m] thickness of oxidier tank
+%tfuel=P_tank*rfuel/(2*sigma); % [m] thickness of fuel tank
 %t_tank_press=P_tank*r_tank_press/(2*sigma); % [m] thickness of pressurize gas tank
 
 % compute mass of propulsion system
-mtankox=rho_tank*4/3*pi*((rox+tox).^3-rox.^3);  % [kg] oxidier tank mass
-mtankfuel=rho_tank*4/3*pi*((rfuel+tfuel).^3-rfuel.^3); % [kg] fuel tank mass
+%mtankox=rho_tank*4/3*pi*((rox+tox).^3-rox.^3);  % [kg] oxidier tank mass
+%mtankfuel=rho_tank*4/3*pi*((rfuel+tfuel).^3-rfuel.^3); % [kg] fuel tank mass
 %m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [kg] pressurize gas tank mass
 
- tfuel
- n.*mtankfuel
-mox=vox*rho_MON.*n;
-mfuel=vfuel*rho_hydrazine;
+% tfuel
+% n.*mtankfuel
+%mox=vox*rho_MON.*n;
+%mfuel=vfuel*rho_hydrazine;
 
-figure()
+%figure()
 
-plot(n,tox);
-grid on
+%plot(n,tox);
+%grid on
 
 
 
