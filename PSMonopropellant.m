@@ -5,8 +5,8 @@ close all,clear all,clc;
 deltaV=180; % [m/s] deltaV
 m_dry=1593; % [kg] dry mass
 I_sp=226.1; % [s] specific impulse of the thrusters
-P_in=29*10^5; % [Pa] initial pressure of gas
-P_fin=5.5*10^5; % [Pa] final pressure of gas
+P_in=27.5*10^5; % [Pa] initial pressure of gas
+P_fin=6.2*10^5; % [Pa] final pressure of gas
 B=P_in/P_fin; % Blow-Down Ratio
 rho_hydrazine=1008; % [kg/m^3] hydrazine density
 T_tank=293; % [K] range 290-300 K
