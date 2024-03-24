@@ -3,7 +3,7 @@ close all,clear all,clc;
 
 %%%%%% BIPROPELLANT REVERSE SIZING %%%%%%%%%
 
-deltaV=1633+264;  % [m/s] deltaV cost
+deltaV=1633;  % [m/s] deltaV cost
 I_sp= 317; % [s] Specific Impulse
 m_dry= 1593; % [kg] Dry Mass
 OF_ratio= 0.85;  % O/F ratio
@@ -13,7 +13,7 @@ g_0= 9.81;  % [m/s^2]  gravitational constant
 rho_hydrazine= 1008; % [kg/m^3]  Fuel density
 rho_MON=1443;  % [kg/m^3]  Oxidier density
 rho_tank= 2780; % [kg/m^3] 2810 for Allumium (Al7075) or 2780 for Titanium (Ti6A14V)
-sigma=950*10^6; % [Pa] 505 for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
+sigma=950*10^6; % [Pa] 503 for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
 %rho_He=0.1784; % [kg/m^3] He density
 P_chamber=21*10^5; % [Pa] Pressure of Combustion Chamber
 v_feed=10; % [m/s] check the value of feed velocity
