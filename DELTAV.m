@@ -1,6 +1,7 @@
 clc
 close all
 clear all
+ 
 %%
 % Departure, flyby, arrival identification number
 D.ID =  3;  % Departure
@@ -34,7 +35,7 @@ A.mjd2000 = date2mjd2000(A.date);
 
 
 %% Interplanetary cruise without DSM
-R = astroConstants(23)+ 500;
+R = astroConstants(23)+ 200;
 
 TOF1 = FB.mjd2000-D.mjd2000;
 [~,~,~,~,vl1,vl2,~,~] = lambertMR(D.r,FB.r,TOF1*3600*24,muS,0,1,0,0);
@@ -55,8 +56,8 @@ clear rM
 rM(:,1) = [r1(1:end-1,1);r2(:,1)];
 rM(:,2) = [r1(1:end-1,2);r2(:,2)];
 rM(:,3) = [r1(1:end-1,3);r2(:,3)];
-
-ManouverPlot(0,D.ID,FB.ID,A.ID,muS,D.mjd2000,TOF1,TOF2,rM);
+% 
+% ManouverPlot(0,D.ID,FB.ID,A.ID,muS,D.mjd2000,TOF1,TOF2,rM);
 
 % searching for the Apoaxis of the first leg
 a(:) = sqrt(r1(:,1).^2+r1(:,2).^2+r1(:,3).^2);
@@ -100,9 +101,9 @@ c = fminsearch(AA,aa);
 TOF1 = DSM.mjd2000-D.mjd2000;
 [~,~,~,~,vl1,vl2,~,~] = lambertMR(D.r,c',TOF1*3600*24,muS,0,0,0,0);
 V1 = norm(vl1'-v1);
-r = 10000;
+r = 7000;
 vp = sqrt(V1^2+2*muE/r);
-vvp = sqrt(muE/r);
+vvp = sqrt(muE/r*(1+0.2));
 DDDDV1 = abs(vp-vvp)
 
 TOF2 = FB.mjd2000-DSM.mjd2000;
@@ -113,14 +114,45 @@ V2 = norm(vl3-vl2);
 TOF3 = A.mjd2000-FB.mjd2000;
 [~,~,~,~,vl5,vl6,~,~] = lambertMR(FB.r,A.r,TOF3*3600*24,muS,0,0,0,0);
 V3 = norm(vl6'-v3);
-r = (muJ*((53.5*24*3600)/2/pi)^2)^(1/3);
-
-vp = sqrt(V3^2+2*muJ/r);
-vvp = sqrt(muJ/r*(1+0.8));
-DDDDV2 = vp-vvp
 [rp,Vfb,~,~,~,~,~] = flyby(vl4',vl5',FB.ID,FB.mjd2000,R);
+%%
+clear T rev ev ddv
+rv = [7e+4:5e+2:10e+5];
+% r = (muJ*((53.5*24*3600)/2/pi)^2)^(1/3);
+vp = @(r) sqrt(V3^2+2*muJ./r);
+i = 0;
+ev = [0.7:0.001:0.98];
+% figure()
+for e = ev
+%     e = 0.7
+i = i+1;
+vvp = @(r) sqrt(muJ./r*(1+e));
+DV2 = @(r) vp(r)-vvp(r);
+%
 
-altitude = rp-astroConstants(23);
+ plot(rv,DV2(rv),Color=[e,e,0])
+ [dvjoi,n2] = min(DV2(rv));
+ rpp = rv(n2);
+hold on
+ altitude = rpp-astroConstants(25);
+
+ a = rpp/(1-e);
+ T(i) = 2*pi*sqrt(a^3/muJ)/3600/24;
+ddv(i) = dvjoi;
+end
+figure()
+
+% plot(ev,T)
+plot(ev,ddv)
+hold on
+plot(ev,T/53,Color='r')
+plot(ev,ones(size(ev)))
+
+[dvjoi,n]= min(ddv);
+T = T(n)
+a = (muJ*(T*3600*24/(2*pi))^2)^(1/3);
+e = ev(n)
+rpp = a*(1-e);
 %% Plot 
 tvect = [D.mjd2000:0.01:A.mjd2000];
 %
@@ -143,9 +175,19 @@ rM(:,3) = [r1v(1:end-1,3);r2v(:,3);r3v(1:end-1,3)];
 ManouverPlot(0,D.ID,FB.ID,A.ID,muS,D.mjd2000,TOF1+TOF2,TOF3,rM);
 
 %%
-array2table(b,"VariableNames",["1", "dsm", "fb", "2"],"RowNames",["DeltaV"])
+b(end) = dvjoi;
+b(1) = dvstart;
 
 
-clear rM a b c eps r1 r2 r3 tvect v1 v2 v3 VV
-clear vl1 vl2 vl3 vl4 vl5 vl6 t1 t2 t3
-clear r1v r2v r3v rp TOF1 TOF2 TOF3 R
+% clear rM a b c eps r1 r2 r3 tvect v1 v2 v3 VV
+%clear vl1 vl2 vl3 vl4 vl5 vl6 t1 t2 t3
+%clear r1v r2v r3v rp TOF1 TOF2 TOF3 R
+
+
+%%%% Deltav PRM
+T2 = 14*3600*24;
+a2 = (muJ*(T2/(2*pi))^2)^(1/3);
+e2 = 1-rpp/a2;
+vPRD = sqrt(muJ*(1+e)/rpp)-sqrt(muJ*(1+e2)/rpp)
+b = [b vPRD];
+array2table(b,"VariableNames",["1", "dsm", "fb", "JOI","PRM"],"RowNames",["DeltaV"])
