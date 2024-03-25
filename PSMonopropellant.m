@@ -2,7 +2,7 @@ close all,clear all,clc;
 %REVERSE SIZING OF PROPULSION SYSTEM
 
 %%%%%% MONOPROPELLANT REVERSE SIZING %%%%%%%%%
-deltaV=180; % [m/s] deltaV
+deltaV=180; % [m/s] deltaV 
 m_dry=1593; % [kg] dry mass
 I_sp=226.1; % [s] specific impulse of the thrusters
 P_in=27.5*10^5; % [Pa] initial pressure of gas
