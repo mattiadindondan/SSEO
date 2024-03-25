@@ -191,3 +191,11 @@ e2 = 1-rpp/a2;
 vPRD = sqrt(muJ*(1+e)/rpp)-sqrt(muJ*(1+e2)/rpp)
 b = [b vPRD];
 array2table(b,"VariableNames",["1", "dsm", "fb", "JOI","PRM"],"RowNames",["DeltaV"])
+
+
+%% Science orbit change 
+Tsc = 14*24*3600;
+a_sc = (muJ*(Tsc/(2*pi))^2)^(1/3);
+e_sc = 0.7
+dom = 11.25/32/180*pi/10;
+dv_sc = 2 * sqrt(muJ / a_sc / (1 - e_sc ^ 2)) * e_sc * sin(dom / 2)
