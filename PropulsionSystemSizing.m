@@ -71,7 +71,7 @@ m_tank_fuel=rho_tank*4/3*pi*((r_tank_fuel+t_tank_fuel)^3-r_tank_fuel^3); % [kg] 
 m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [kg] pressurize gas tank mass
 
 rho_tank*((1+P_tank/(2*sigma))^3-1)
-M_propsyst=1.1*(m_tank_fuel+m_tank_ox+m_tank_press+m_press_real+m_engine); % [kg] total mass of primary propulsion system + margin
+
 
 %%%%%%% Volume Sizing %%%%%%%
 %n=[1:6];
@@ -121,3 +121,4 @@ Mass_ox_final = rho_MON*V_ox_final;
 
 t_tank=P_tank*r/(2*sigma) 
 m_tank=rho_tank*4/3*pi*((r+t_tank)^3-r^3)
+M_propsyst=1.1*(m_tank+m_tank_press+m_press_real+m_engine) % [kg] total mass of primary propulsion system + margin
