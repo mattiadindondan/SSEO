@@ -137,7 +137,7 @@ V_prop_marg=1.1*V_propmono;  % [m^3] propellant volume + margin
 
 %%%%% SUM OF V_fuel+V_prop of monoprop %%%%%
 V_tot_fuel=V_prop_marg+V_fuel_marg; % [m^3] total volume of fuel both biprop and monoprop
-M_fuel_tot_withmonoprop=rho_MON*V_tot_fuel; % [kg] total mass fuel biprop+ monoprop
+M_fuelsystem=rho_hydrazine*V_tot_fuel; % [kg] total mass fuel biprop+ monoprop
 
 %%%%%%% Volume Sizing %%%%%%%
 
