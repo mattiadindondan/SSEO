@@ -12,8 +12,8 @@ rho_hydrazine=1008; % [kg/m^3] hydrazine density
 T_tank=293; % [K] range 290-300 K
 R=2077.3; % [J/(kgK)] specific constant gas for He
 g_0=9.81; % [m/s^2] gravitational constant
-sigma=950*10^6; % [Pa] 503 for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
-rho_tank=2780; % [kg/m^3] 2810 for Allumium (Al7075) or 2780 for Titanium (Ti6A14V)
+sigma=9500*10^6; % [Pa] 503 for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
+rho_tank=4430; % [kg/m^3] 2810 for Allumium (Al7075) or 2780 for Titanium (Ti6A14V)
 m_thrusters=0.49; % [kg] on datasheet  
 
 deltaV_marg=2*deltaV; % deltaV + margin
