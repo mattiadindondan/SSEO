@@ -117,7 +117,7 @@ V3 = norm(vl6'-v3);
 [rp,Vfb,~,~,~,~,~] = flyby(vl4',vl5',FB.ID,FB.mjd2000,R);
 %%
 clear T rev ev ddv
-rv = [7e+4:5e+2:10e+5];
+rv = [6e+4:5e+2:10e+5];
 % r = (muJ*((53.5*24*3600)/2/pi)^2)^(1/3);
 vp = @(r) sqrt(V3^2+2*muJ./r);
 i = 0;
@@ -176,7 +176,7 @@ ManouverPlot(0,D.ID,FB.ID,A.ID,muS,D.mjd2000,TOF1+TOF2,TOF3,rM);
 
 %%
 b(end) = dvjoi;
-b(1) = dvstart;
+% b(1) = dvstart;
 
 
 % clear rM a b c eps r1 r2 r3 tvect v1 v2 v3 VV
@@ -195,7 +195,8 @@ array2table(b,"VariableNames",["1", "dsm", "fb", "JOI","PRM"],"RowNames",["Delta
 
 %% Science orbit change 
 Tsc = 14*24*3600;
+
 a_sc = (muJ*(Tsc/(2*pi))^2)^(1/3);
-e_sc = 0.7
-dom = 11.25/32/180*pi/10;
+e_sc = 0.9;
+dom = 0.05/180*pi;
 dv_sc = 2 * sqrt(muJ / a_sc / (1 - e_sc ^ 2)) * e_sc * sin(dom / 2)

@@ -42,9 +42,9 @@ axis equal
 hold on
 % orbits
 plot3(P1.X, P1.Y, P1.Z,'LineStyle','--','color',[0.4, 0.4, 0.4],'LineWidth',2)
-plot3(P2.X, P2.Y, P2.Z,'LineStyle','--','color',"#4DBEEE",'LineWidth',2)
+% plot3(P2.X, P2.Y, P2.Z,'LineStyle','--','color',"#4DBEEE",'LineWidth',2)
 plot3(P3.X, P3.Y, P3.Z,'LineStyle','--','color',"#D95319",'LineWidth',2)
-plot3(rM(:,1), rM(:,2), rM(:,3),'LineWidth',2)
+plot3(rM(:,1), rM(:,2), rM(:,3),'color',"blue",'LineWidth',2)
 
 % manoeuvre positions
 plot3(0,0,0,'o','Color',"#EDB120",'MarkerSize',7,'MarkerFaceColor',"#EDB120")
@@ -70,7 +70,7 @@ pointHandle2 = plot3(NaN, NaN,NaN, 'o', 'MarkerSize', 7, 'MarkerFaceColor', "#00
 pointHandle3 = plot3(NaN, NaN,NaN, 'o', 'MarkerSize', 7, 'MarkerFaceColor', "#EDB120","MarkerEdgeColor","#A2142F");
 % time vector
 t = linspace(DEP,DEP+TOF1+TOF2,size(rM,1));
-legend('Mercury orbit','Earth orbit','Saturn Orbit','','','','','','','Spacecraft','Mercury','Earth','Saturn');
+% legend('Mercury orbit','Earth orbit','Saturn Orbit','','','','','','','Spacecraft','Mercury','Earth','Saturn');
 
 for i = 1:3:size(rM,1)
     [Kep1,~] = uplanet(t(i),n1);

@@ -1,9 +1,11 @@
-close all,clear all,clc;
+close all
+clear 
+clc
 %REVERSE SIZING OF PROPULSION SYSTEM
 
 %%%%%% BIPROPELLANT REVERSE SIZING %%%%%%%%%
 
-deltaV=1633;  % [m/s] deltaV cost
+deltaV=1693;  % [m/s] deltaV cost
 I_sp= 317; % [s] Specific Impulse
 m_dry= 1593; % [kg] Dry Mass
 OF_ratio= 0.85;  % O/F ratio
@@ -55,8 +57,8 @@ m_press_real=1.2*m_press; % [kg] pressurize gas mass + margin
 V_press=m_press_real*R*T_tank/P_press_i; % [m^3] press Volume
 
 %%% COMPUTE THA TANK MASSES %%%%%
-r_tank_ox=(3/4*V_ox_marg/pi)^(1/3);  % [m] radius of spherycal tank of oxidier
-r_tank_fuel=(3/4*V_fuel_marg/pi)^(1/3); % [m] radius of spherycal tank of fuel
+r_tank_ox=(3/4*V_ox_marg/pi/2)^(1/3);  % [m] radius of spherycal tank of oxidier
+r_tank_fuel=(3/4*V_fuel_marg/pi/4)^(1/3); % [m] radius of spherycal tank of fuel
 r_tank_press=(3/4*V_press/pi)^(1/3); % [m] radius of spherycal tank of pressurize gas
 t_tank_ox=P_tank*r_tank_ox/(2*sigma);  % [m] thickness of oxidier tank
 t_tank_fuel=P_tank*r_tank_fuel/(2*sigma); % [m] thickness of fuel tank
@@ -68,7 +70,7 @@ m_tank_ox=rho_tank*4/3*pi*((r_tank_ox+t_tank_ox)^3-r_tank_ox^3);  % [kg] oxidier
 m_tank_fuel=rho_tank*4/3*pi*((r_tank_fuel+t_tank_fuel)^3-r_tank_fuel^3); % [kg] fuel tank mass
 m_tank_press=rho_tank*4/3*pi*((r_tank_press+t_tank_press)^3-r_tank_press^3); % [kg] pressurize gas tank mass
 
-
+rho_tank*((1+P_tank/(2*sigma))^3-1)
 M_propsyst=1.1*(m_tank_fuel+m_tank_ox+m_tank_press+m_press_real+m_engine); % [kg] total mass of primary propulsion system + margin
 
 %%%%%%% Volume Sizing %%%%%%%
@@ -107,7 +109,15 @@ M_propsyst=1.1*(m_tank_fuel+m_tank_ox+m_tank_press+m_press_real+m_engine); % [kg
 %plot(n,tox);
 %grid on
 
+r = max(r_tank_ox,r_tank_fuel);
+V = 4/3*pi*r^3;
+V_ox_final = 2*V;
+V_fuel_final = 4*V;
 
 
+Mass_fuel_final = rho_hydrazine*V_fuel_final;
+Mass_ox_final = rho_MON*V_ox_final;
 
 
+t_tank=P_tank*r/(2*sigma) 
+m_tank=rho_tank*4/3*pi*((r+t_tank)^3-r^3)
