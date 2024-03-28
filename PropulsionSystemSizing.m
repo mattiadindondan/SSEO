@@ -149,6 +149,14 @@ r = max(r_tank_ox,r_tank_fuelfinal);
 V = 4/3*pi*r^3;
 V_ox_final = 2*V;
 V_fuel_final = 4*V;
+%%% compute the new mass press summing monoprop and biprop
+V_prop2= V_ox_marg+V_tot_fuel; % [m^3] Propellant Volume with biprop and monoprop
+m_press2=((P_tank*V_prop2)/(R*T_tank))*(y/(1-(P_tank/P_press_i))); % [kg] pressurize gas mass 
+m_press_real2=1.2*m_press2; % [kg] pressurize gas mass + margin
+V_press2=m_press_real2*R*T_tank/P_press_i; % [m^3] press Volume
+r_tank_press2=(3/4*V_press2/pi/4)^(1/3); % [m] radius of spherycal tank of pressurize gas
+t_tank_press2=P_tank*r_tank_press2/(2*sigma); % [m] thickness of pressurize gas tank
+m_tank_press2=rho_tank*4/3*pi*((r_tank_press2+t_tank_press2)^3-r_tank_press2^3); % [kg] pressurize gas tank mass
 
 
 Mass_fuel_final = rho_hydrazine*V_fuel_final;
@@ -162,7 +170,7 @@ m_tank=rho_tank*4/3*pi*((r+t_tank)^3-r^3)
 
 %%%%% COMPUTE THE TOTAL PROPULSION SYSTEM MASS
 
-M_propsyst=1.1*((6*m_tank)+(4*m_tank_press)+m_press_real+m_engine+(12*m_thrusters)) % [kg] total mass of primary propulsion system + margin
+M_propsyst=1.1*((6*m_tank)+(4*m_tank_press2)+m_press_real2+m_engine+(12*m_thrusters)) % [kg] total mass of primary propulsion system + margin
 
 
 
