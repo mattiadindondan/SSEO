@@ -139,9 +139,13 @@ V_prop_marg=1.1*V_propmono;  % [m^3] propellant volume + margin
 V_tot_fuel=V_prop_marg+V_fuel_marg; % [m^3] total volume of fuel both biprop and monoprop
 M_fuelsystem=rho_hydrazine*V_tot_fuel; % [kg] total mass fuel biprop+ monoprop
 
+r_tank_fuelfinal=(3/4*V_tot_fuel/pi/4)^(1/3); % [m] radius of spherycal tank of fuel mono+ biprop
+t_tank_fuelfinal=P_tank*r_tank_fuel/(2*sigma); % [m] thickness of fuel tank mono + biprop
+M_tank_fuelfinal=rho_tank*4/3*pi*((r_tank_fuel+t_tank_fuel)^3-r_tank_fuel^3); % [kg] mass tank fuel mono + biprop
+
 %%%%%%% Volume Sizing %%%%%%%
 
-r = max(r_tank_ox,r_tank_fuel);
+r = max(r_tank_ox,r_tank_fuelfinal);
 V = 4/3*pi*r^3;
 V_ox_final = 2*V;
 V_fuel_final = 4*V;
