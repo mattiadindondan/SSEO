@@ -6,7 +6,7 @@ clc
 %%%%%% BIPROPELLANT REVERSE SIZING %%%%%%%%%
 
 deltaV=1693;  % [m/s] deltaV cost
-I_sp= 317; % [s] Specific Impulse
+I_sp= 320; % [s] Specific Impulse
 m_dry= 1593; % [kg] Dry Mass
 OF_ratio= 0.85;  % O/F ratio
 R=2077.3; % [J/(Kg*K)] specific constant gas for He
@@ -15,12 +15,12 @@ g_0= 9.81;  % [m/s^2]  gravitational constant
 rho_hydrazine= 1032; % [kg/m^3]  Fuel density
 rho_MON=1443;  % [kg/m^3]  Oxidier density
 rho_tank= 4430; % [kg/m^3] 2810 for Allumium (Al7075) or 4430 for Titanium (Ti6A14V)
-sigma=9500*10^6; % [Pa] 503 for Allumium (Al7075) or 9500 for Titanium (Ti6A14V)
+sigma=950*10^6; % [Pa] 503 for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
 %rho_He=0.1784; % [kg/m^3] He density
 P_chamber=18*10^5; % [Pa] Pressure of Combustion Chamber
 v_feed=10; % [m/s] check the value of feed velocity
 margin_deltaV= 1.1; % margin of deltaV
-T_tank=300; %[K] the range for bi-propellant 290-300k Tank Temperature
+T_tank=298; %[K] the range for bi-propellant 290-300k Tank Temperature
 m_engine=4.5; % [kg] engine mass
 
 
@@ -117,10 +117,10 @@ P_in=27.5*10^5; % [Pa] initial pressure of gas
 P_fin=6.2*10^5; % [Pa] final pressure of gas
 B=P_in/P_fin; % Blow-Down Ratio
 rho_hydrazine=1032; % [kg/m^3] hydrazine density
-T_tank=300; % [K] range 290-300 K
+T_tank=298; % [K] range 290-300 K
 R=2077.3; % [J/(kgK)] specific constant gas for He
 g_0=9.81; % [m/s^2] gravitational constant
-sigma=9500*10^6; % [Pa] 503 for Allumium (Al7075) or 9500 for Titanium (Ti6A14V)
+sigma=950*10^6; % [Pa] 503 for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
 rho_tank=4430; % [kg/m^3] 2810 for Allumium (Al7075) or 4430 for Titanium (Ti6A14V)
 m_thrusters=0.49; % [kg] on datasheet  
 
