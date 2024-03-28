@@ -121,4 +121,41 @@ Mass_ox_final = rho_MON*V_ox_final;
 
 t_tank=P_tank*r/(2*sigma) 
 m_tank=rho_tank*4/3*pi*((r+t_tank)^3-r^3)
-M_propsyst=1.1*(m_tank+m_tank_press+m_press_real+m_engine) % [kg] total mass of primary propulsion system + margin
+
+
+%%%%%% MONOPROPELLANT REVERSE SIZING %%%%%%%%%
+deltaVmono=180; % [m/s] deltaV 
+m_dry=1593; % [kg] dry mass
+I_sp=226.1; % [s] specific impulse of the thrusters
+P_in=27.5*10^5; % [Pa] initial pressure of gas
+P_fin=6.2*10^5; % [Pa] final pressure of gas
+B=P_in/P_fin; % Blow-Down Ratio
+rho_hydrazine=1008; % [kg/m^3] hydrazine density
+T_tank=293; % [K] range 290-300 K
+R=2077.3; % [J/(kgK)] specific constant gas for He
+g_0=9.81; % [m/s^2] gravitational constant
+sigma=950*10^6; % [Pa] 503 for Allumium (Al7075) or 950 for Titanium (Ti6A14V)
+rho_tank=2780; % [kg/m^3] 2810 for Allumium (Al7075) or 2780 for Titanium (Ti6A14V)
+m_thrusters=0.49; % [kg] on datasheet  
+
+deltaV_margmono=2*deltaVmono; % deltaV + margin
+
+MR=exp(deltaV_margmono/I_sp/g_0); % Mass Ratio
+m_fin=1.2*m_dry; % [kg] final mass
+m_0mono=m_fin*MR; % [kg] initial mass
+m_propmon=m_0mono-m_fin; % [Kg] propellant mass
+m_prop_realmono=m_propmon*1.055; % [kg] propellant mass + margin
+
+V_propmono=m_prop_realmono/rho_hydrazine; % [m^3] propellant volume
+V_prop_marg=1.1*V_propmono;  % [m^3] propellant volume + margin
+
+%%%%% COMPUTE THE TOTAL PROPULSION SYSTEM MASS
+
+M_propsyst=1.1*((6*m_tank)+m_tank_press+m_press_real+m_engine+(12*m_thrusters)) % [kg] total mass of primary propulsion system + margin
+
+
+
+
+
+
+
