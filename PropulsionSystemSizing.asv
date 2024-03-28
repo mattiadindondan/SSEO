@@ -44,7 +44,7 @@ V_ox=m_ox/rho_MON; % [m^3] Oxidier Volume
 V_fuel_marg=V_fuel*1.1;  % [m^3] Fuel Volume + margin
 V_ox_marg=V_ox*1.1; % [m^3] Oxidier Volume + margin
 V_prop= V_ox_marg+V_fuel_marg; % [m^3] Propellant Volume
-
+V_prop_marg=V_prop; % [m^3] Propellant Volume + margin
 
 
 deltaP_inj=0.3*P_chamber; % [Pa] deltaP Injection
@@ -52,7 +52,7 @@ deltaP_feed=(1/2*rho_MON*v_feed^2); % [Pa] deltaP feed
 P_tank=(P_chamber+deltaP_feed+deltaP_inj); % [Pa] Tank Pressure
 P_press_i=10*P_tank; % [Pa] Pressurize Gas Pressure check the 10 times
 
-m_press=((P_tank*V_prop)/(R*T_tank))*(y/(1-(P_tank/P_press_i))); % [kg] pressurize gas mass 
+m_press=((P_tank*V_prop_marg)/(R*T_tank))*(y/(1-(P_tank/P_press_i))); % [kg] pressurize gas mass 
 m_press_real=1.2*m_press; % [kg] pressurize gas mass + margin
 V_press=m_press_real*R*T_tank/P_press_i; % [m^3] press Volume
 
